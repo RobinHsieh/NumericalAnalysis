@@ -30,6 +30,9 @@ class InitialFrame:
         self.canvas = Canvas(self.initial_frame, height=400, width=600)
         self.canvas.place(relx=0.1, rely=0.1, anchor=NW)
 
+        self.canvas1 = Canvas(self.initial_frame, height=200, width=300)
+        self.canvas1.place(relx=0.2, rely=0.2, anchor=NW)
+
         self.img = Image.open("S__65994756.jpg")
         self.img = self.img.resize((600, 400))
         self.tk_img = ImageTk.PhotoImage(self.img)
