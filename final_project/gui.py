@@ -41,12 +41,19 @@ class InitialFrame:
         self.btn = tk.Button(self.initial_frame, text="印堂", command=self.change)
         self.canvas.create_window(300, 200, anchor=CENTER, window=self.btn)
 
+        self.btn1 = tk.Button(self.initial_frame, text="delete canvas", command=self.delete_canvas)
+        self.canvas.create_window(200, 200, anchor=CENTER, window=self.btn1)
+
     def change(self):
         self.initial_frame.destroy()  # 刪除 InitialFrame
 
         pygame.mixer.music.load("Boat_Horn_Sound.mp3")
         pygame.mixer.music.play(loops=0)
         FrameMenu(self.root)
+
+    def delete_canvas(self):
+
+        self.canvas.delete("all")
 
 
 class FrameMenu:
