@@ -30,9 +30,6 @@ class InitialFrame:
         self.canvas = Canvas(self.initial_frame, height=400, width=600)
         self.canvas.place(relx=0.1, rely=0.1, anchor=NW)
 
-        self.canvas1 = Canvas(self.initial_frame, height=200, width=300)
-        self.canvas1.place(relx=0.2, rely=0.2, anchor=NW)
-
         self.img = Image.open("S__65994756.jpg")
         self.img = self.img.resize((600, 400))
         self.tk_img = ImageTk.PhotoImage(self.img)
@@ -41,19 +38,12 @@ class InitialFrame:
         self.btn = tk.Button(self.initial_frame, text="印堂", command=self.change)
         self.canvas.create_window(300, 200, anchor=CENTER, window=self.btn)
 
-        self.btn1 = tk.Button(self.initial_frame, text="delete canvas", command=self.delete_canvas)
-        self.canvas.create_window(200, 200, anchor=CENTER, window=self.btn1)
-
     def change(self):
         self.initial_frame.destroy()  # 刪除 InitialFrame
 
         pygame.mixer.music.load("Boat_Horn_Sound.mp3")
         pygame.mixer.music.play(loops=0)
         FrameMenu(self.root)
-
-    def delete_canvas(self):
-
-        self.canvas.delete("all")
 
 
 class FrameMenu:
