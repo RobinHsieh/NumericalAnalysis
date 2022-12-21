@@ -46,7 +46,7 @@ class InitialFrame:
         self.intro_label2 = tk.Button(self.initial_frame,
                                       text="～居然能預測2023年魷魚、沙丁魚、秋刀魚的捕獲量～",
                                       font=('Arial', 15, 'bold'), bg="#BCC6CC", fg="#737CA1",
-                                      command=self.start_predict, highlightthickness=0)  # Metallic Silver
+                                      command=self.bonus, highlightthickness=0)  # Metallic Silver
         self.intro_label2.place(relx=0.2, rely=0.9, relheight=0.05, relwidth=0.6)
 
     def start_predict(self):
@@ -58,18 +58,34 @@ class InitialFrame:
 
     def bonus(self):
         self.initial_frame.destroy()  # 刪除 InitialFrame
+        BonusMenu(self.root)
 
 
 class BonusMenu:
     def __init__(self, master):
         # root 背景設定
         self.root = master
-        self.root.config(bg="#98AFC7")  # Blue Gray
+        self.root.config(bg="#737CA1")  # Slate Blue Grey
 
-        # frame_menu 背景設定
-        self.bonus_menu = tk.Frame(self.root)  # 在 root 上建 FrameMenu
-        self.bonus_menu.config(bg="#737CA1")  # Slate Blue Grey
-        self.bonus_menu.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.25)
+        # bonus_menu 背景設定
+        self.bonus_menu = tk.Frame(self.root)  # 在 root 上建 BonusMenu
+        self.bonus_menu.config(bg="#E3E4FA")  # Lavender Blue
+        self.bonus_menu.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.95)
+
+        self.intro_label2 = tk.Button(self.bonus_menu,
+                                      text="～返回～",
+                                      font=('Arial', 15, 'bold'), bg="#BCC6CC", fg="#737CA1",
+                                      command=self.back, highlightthickness=0)  # Metallic Silver
+        self.intro_label2.place(relx=0.2, rely=0.9, relheight=0.05, relwidth=0.6)
+
+        self.predict_label = tk.Label(self.bonus_menu,
+                                      text="   預測2023年捕獲量：\n\n秋刀魚：167382.4\n沙丁魚：195547.1\n  魷魚：26383.4\n\n(單位：噸)",
+                                      bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
+        self.predict_label.place(relx=0.2, rely=0.35, relheight=0.35, relwidth=0.6)
+
+    def back(self):
+        self.bonus_menu.destroy()  # 刪除 BonusMenu
+        InitialFrame(self.root)
 
 
 class FrameMenu:
