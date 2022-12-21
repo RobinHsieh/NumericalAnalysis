@@ -2,8 +2,6 @@ import tkinter as tk
 from tkinter import *
 from PIL import Image, ImageTk
 import pygame
-from tkVideoPlayer import TkinterVideo
-
 
 pygame.mixer.init()
 
@@ -23,18 +21,20 @@ class InitialFrame:
         self.root = master
         self.root.config(bg="#98AFC7")  # Blue Gray
 
-        # 基準界面 InitialFrame
+        # 開始界面 InitialFrame，並放置開始界面 InitialFrame 在 root 上
         self.initial_frame = tk.Frame(self.root, bg="#BCC6CC")  # Metallic Silver
         self.initial_frame.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.95)
 
         self.canvas = Canvas(self.initial_frame, height=400, width=600)
         self.canvas.place(relx=0.1, rely=0.1, anchor=NW)
 
+        # 在 canvas 放上 image
         self.img = Image.open("S__65994756.jpg")
         self.img = self.img.resize((600, 400))
         self.tk_img = ImageTk.PhotoImage(self.img)
         self.canvas.create_image(300, 200, anchor=CENTER, image=self.tk_img)
 
+        # 在 canvas 放上 button
         self.btn = tk.Button(self.initial_frame, text="印堂", command=self.change)
         self.canvas.create_window(300, 200, anchor=CENTER, window=self.btn)
 
@@ -158,9 +158,19 @@ class SauryMenu:
         self.label_pic.place(relx=0.2, rely=0.05, relheight=0.4, relwidth=0.6)
 
         self.intro_label = tk.Label(self.saury_menu,
-                                    text="秋刀魚主要漁場，位於：35~50°N、145~170°E\n使用8月海水表面平均溫度預測漁獲量",
+                                    text="秋刀魚主要漁場，位於：35~50°N、145~170°E\n使用8月海水表面平均溫度預測漁獲量"
+                                         "\n\n\n有效溫度：11.94°C~33.19°C",
                                     bg="#737CA1", font=('Arial', 15, 'bold'), fg="#EBF4FA")  # Water
-        self.intro_label.place(relx=0.2, rely=0.45, relheight=0.1, relwidth=0.6)
+        self.intro_label.place(relx=0.2, rely=0.45, relheight=0.2, relwidth=0.6)
+
+        self.img_saury = Image.open('saury.jpg')
+        self.img_saury = self.img_saury.resize((174, 116))
+        self.tk_img_saury = ImageTk.PhotoImage(self.img_saury)
+
+        self.canvas = Canvas(self.saury_menu, width=174, height=116, bg="#737CA1"
+                             , highlightthickness=0)  # Slate Blue Grey
+        self.canvas.create_image(0, 0, anchor=NW, image=self.tk_img_saury)
+        self.canvas.place(relx=0.63, rely=0.7, relheight=0.193, relwidth=0.29)
 
     def button_event(self):
         x = float(self.frame_entry.get())
@@ -219,6 +229,15 @@ class SardineMenu:
                                     bg="#36454F", font=('Arial', 15, 'bold'), fg="#CFECEC")  # Pale Blue Lily
         self.intro_label.place(relx=0.175, rely=0.45, relheight=0.1, relwidth=0.65)
 
+        self.img_saury = Image.open('sardine.jpg')
+        self.img_saury = self.img_saury.resize((174, 116))
+        self.tk_img_saury = ImageTk.PhotoImage(self.img_saury)
+
+        self.canvas = Canvas(self.sardine_menu, width=174, height=116, bg="#36454F"
+                             , highlightthickness=0)  # Charcoal Blue
+        self.canvas.create_image(0, 0, anchor=NW, image=self.tk_img_saury)
+        self.canvas.place(relx=0.63, rely=0.7, relheight=0.193, relwidth=0.29)
+
     def button_event(self):
         x = float(self.frame_entry.get())
         y = 77568397.53 - 10373035.10*x + 347362.90*x**2
@@ -272,9 +291,19 @@ class SquidMenu:
         self.label_pic.place(relx=0.2, rely=0.05, relheight=0.4, relwidth=0.6)
 
         self.intro_label = tk.Label(self.squid_menu,
-                                    text="魷魚主要漁場，位於：20~50°N、160°E~140°W\n使用1~3月海水表面平均溫度預測漁獲量",
+                                    text="魷魚主要漁場，位於：20~50°N、160°E~140°W\n使用1~3月海水表面平均溫度預測漁獲量"
+                                    "\n\n\n有效溫度：~12.22°C",
                                     bg="#2C3539", font=('Arial', 15, 'bold'), fg="#CFECEC")  # Pale Blue Lily
-        self.intro_label.place(relx=0.175, rely=0.45, relheight=0.1, relwidth=0.65)
+        self.intro_label.place(relx=0.175, rely=0.45, relheight=0.2, relwidth=0.65)
+
+        self.img_saury = Image.open('squid.jpg')
+        self.img_saury = self.img_saury.resize((174, 116))
+        self.tk_img_saury = ImageTk.PhotoImage(self.img_saury)
+
+        self.canvas = Canvas(self.squid_menu, width=174, height=116, bg="#2C3539"
+                             , highlightthickness=0)  # Gunmetal
+        self.canvas.create_image(0, 0, anchor=NW, image=self.tk_img_saury)
+        self.canvas.place(relx=0.63, rely=0.7, relheight=0.193, relwidth=0.29)
 
     def button_event(self):
         x = float(self.frame_entry.get())
