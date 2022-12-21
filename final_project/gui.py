@@ -25,6 +25,7 @@ class InitialFrame:
         self.initial_frame = tk.Frame(self.root, bg="#BCC6CC")  # Metallic Silver
         self.initial_frame.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.95)
 
+        # 在 InitialFrame放上 canvas
         self.canvas = Canvas(self.initial_frame, height=400, width=600)
         self.canvas.place(relx=0.1, rely=0.1, anchor=NW)
 
@@ -35,15 +36,40 @@ class InitialFrame:
         self.canvas.create_image(300, 200, anchor=CENTER, image=self.tk_img)
 
         # 在 canvas 放上 button
-        self.btn = tk.Button(self.initial_frame, text="印堂", command=self.change)
+        self.btn = tk.Button(self.initial_frame, text="印堂", command=self.start_predict)
         self.canvas.create_window(300, 200, anchor=CENTER, window=self.btn)
 
-    def change(self):
+        self.intro_label = tk.Label(self.initial_frame,
+                                    text="震驚！   這個組別太厲害了😆",
+                                    bg="#BCC6CC", font=('Arial', 15, 'bold'), fg="#737CA1")  # Metallic Silver
+        self.intro_label.place(relx=0.2, rely=0.05, relheight=0.05, relwidth=0.6)
+        self.intro_label2 = tk.Button(self.initial_frame,
+                                      text="～居然能預測2023年魷魚、沙丁魚、秋刀魚的捕獲量～",
+                                      font=('Arial', 15, 'bold'), bg="#BCC6CC", fg="#737CA1",
+                                      command=self.start_predict, highlightthickness=0)  # Metallic Silver
+        self.intro_label2.place(relx=0.2, rely=0.9, relheight=0.05, relwidth=0.6)
+
+    def start_predict(self):
         self.initial_frame.destroy()  # 刪除 InitialFrame
 
         pygame.mixer.music.load("Boat_Horn_Sound.mp3")
         pygame.mixer.music.play(loops=0)
         FrameMenu(self.root)
+
+    def bonus(self):
+        self.initial_frame.destroy()  # 刪除 InitialFrame
+
+
+class BonusMenu:
+    def __init__(self, master):
+        # root 背景設定
+        self.root = master
+        self.root.config(bg="#98AFC7")  # Blue Gray
+
+        # frame_menu 背景設定
+        self.bonus_menu = tk.Frame(self.root)  # 在 root 上建 FrameMenu
+        self.bonus_menu.config(bg="#737CA1")  # Slate Blue Grey
+        self.bonus_menu.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.25)
 
 
 class FrameMenu:
@@ -62,7 +88,6 @@ class FrameMenu:
         # root 背景設定
         self.root = master
         self.root.config(bg="#98AFC7")  # Blue Gray
-        # self.root.iconbitmap()
 
         # frame_menu 背景設定
         self.frame_menu = tk.Frame(self.root)  # 在 root 上建 FrameMenu
@@ -167,14 +192,14 @@ class SauryMenu:
         self.img_saury = self.img_saury.resize((174, 116))
         self.tk_img_saury = ImageTk.PhotoImage(self.img_saury)
 
-        self.canvas = Canvas(self.saury_menu, width=174, height=116, bg="#737CA1"
-                             , highlightthickness=0)  # Slate Blue Grey
+        self.canvas = Canvas(self.saury_menu, width=174, height=116, bg="#737CA1",
+                             highlightthickness=0)  # Slate Blue Grey
         self.canvas.create_image(0, 0, anchor=NW, image=self.tk_img_saury)
         self.canvas.place(relx=0.63, rely=0.7, relheight=0.193, relwidth=0.29)
 
     def button_event(self):
         x = float(self.frame_entry.get())
-        y = -2866.1217 * x**2 + 129342.7910 * x - 1135741.9809
+        y = -2866.1217 * x ** 2 + 129342.7910 * x - 1135741.9809
         self.frame_ans.delete(1.0, END)
         self.frame_ans.insert('insert', str(round(y, 3)))
 
@@ -233,14 +258,14 @@ class SardineMenu:
         self.img_saury = self.img_saury.resize((174, 116))
         self.tk_img_saury = ImageTk.PhotoImage(self.img_saury)
 
-        self.canvas = Canvas(self.sardine_menu, width=174, height=116, bg="#36454F"
-                             , highlightthickness=0)  # Charcoal Blue
+        self.canvas = Canvas(self.sardine_menu, width=174, height=116, bg="#36454F",
+                             highlightthickness=0)  # Charcoal Blue
         self.canvas.create_image(0, 0, anchor=NW, image=self.tk_img_saury)
         self.canvas.place(relx=0.63, rely=0.7, relheight=0.193, relwidth=0.29)
 
     def button_event(self):
         x = float(self.frame_entry.get())
-        y = 77568397.53 - 10373035.10*x + 347362.90*x**2
+        y = 77568397.53 - 10373035.10 * x + 347362.90 * x ** 2
         self.frame_ans.delete(1.0, END)
         self.frame_ans.insert('insert', str(round(y, 3)))
 
@@ -292,7 +317,7 @@ class SquidMenu:
 
         self.intro_label = tk.Label(self.squid_menu,
                                     text="魷魚主要漁場，位於：20~50°N、160°E~140°W\n使用1~3月海水表面平均溫度預測漁獲量"
-                                    "\n\n\n有效溫度：~12.22°C",
+                                         "\n\n\n有效溫度：~12.22°C",
                                     bg="#2C3539", font=('Arial', 15, 'bold'), fg="#CFECEC")  # Pale Blue Lily
         self.intro_label.place(relx=0.175, rely=0.45, relheight=0.2, relwidth=0.65)
 
@@ -300,8 +325,8 @@ class SquidMenu:
         self.img_saury = self.img_saury.resize((174, 116))
         self.tk_img_saury = ImageTk.PhotoImage(self.img_saury)
 
-        self.canvas = Canvas(self.squid_menu, width=174, height=116, bg="#2C3539"
-                             , highlightthickness=0)  # Gunmetal
+        self.canvas = Canvas(self.squid_menu, width=174, height=116, bg="#2C3539",
+                             highlightthickness=0)  # Gunmetal
         self.canvas.create_image(0, 0, anchor=NW, image=self.tk_img_saury)
         self.canvas.place(relx=0.63, rely=0.7, relheight=0.193, relwidth=0.29)
 
