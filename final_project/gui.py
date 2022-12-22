@@ -96,10 +96,15 @@ class BonusMenu:
                                        bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
         self.predict_label3.place(relx=0.2, rely=0.5, relheight=0.05, relwidth=0.6)
 
-        self.predict_label3 = tk.Label(self.bonus_menu,
-                                       text="  魷魚：26383.4\n\n(單位：噸)",
+        self.predict_label4 = tk.Label(self.bonus_menu,
+                                       text=" 魷魚：26383.4",
                                        bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
-        self.predict_label3.place(relx=0.2, rely=0.55, relheight=0.15, relwidth=0.6)
+        self.predict_label4.place(relx=0.2, rely=0.55, relheight=0.05, relwidth=0.6)
+
+        self.predict_label5 = tk.Label(self.bonus_menu,
+                                       text="\n\n(單位：噸)",
+                                       bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
+        self.predict_label5.place(relx=0.2, rely=0.6, relheight=0.15, relwidth=0.6)
 
     def back(self):
         self.bonus_menu.destroy()  # 刪除 BonusMenu
