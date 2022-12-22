@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+import tkmacosx as tkm
 from PIL import Image, ImageTk
 import pygame
 
@@ -36,17 +37,19 @@ class InitialFrame:
         self.canvas.create_image(300, 200, anchor=CENTER, image=self.tk_img)
 
         # 在 canvas 放上 button
-        self.btn = tk.Button(self.initial_frame, text="印堂", command=self.start_predict)
+        self.btn = tk.Button(self.initial_frame, text="印堂", font=('Arial', 15), command=self.start_predict,
+                             highlightthickness=0, bd=3)
         self.canvas.create_window(300, 200, anchor=CENTER, window=self.btn)
 
         self.intro_label = tk.Label(self.initial_frame,
                                     text="震驚！   這個組別太厲害了😆",
                                     bg="#BCC6CC", font=('Arial', 15, 'bold'), fg="#737CA1")  # Metallic Silver
         self.intro_label.place(relx=0.2, rely=0.05, relheight=0.05, relwidth=0.6)
-        self.intro_label2 = tk.Button(self.initial_frame,
-                                      text="～居然能預測2023年魷魚、沙丁魚、秋刀魚的捕獲量～",
-                                      font=('Arial', 15, 'bold'), bg="#BCC6CC", fg="#737CA1",
-                                      command=self.bonus, highlightthickness=0)  # Metallic Silver
+        self.intro_label2 = tkm.Button(self.initial_frame,
+                                       text="～居然能預測2023年魷魚、沙丁魚、秋刀魚的捕獲量～",
+                                       font=('Arial', 15, 'bold'), bg="#BCC6CC", fg="#737CA1",
+                                       highlightbackground="#BCC6CC", bd=3,
+                                       command=self.bonus, highlightthickness=0)  # Metallic Silver
         self.intro_label2.place(relx=0.2, rely=0.9, relheight=0.05, relwidth=0.6)
 
     def start_predict(self):
@@ -72,10 +75,10 @@ class BonusMenu:
         self.bonus_menu.config(bg="#E3E4FA")  # Lavender Blue
         self.bonus_menu.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.95)
 
-        self.intro_label2 = tk.Button(self.bonus_menu,
-                                      text="～返回～",
-                                      font=('Arial', 15, 'bold'), bg="#BCC6CC", fg="#737CA1",
-                                      command=self.back, highlightthickness=0)  # Metallic Silver
+        self.intro_label2 = tkm.Button(self.bonus_menu,
+                                       text="～返回～",
+                                       font=('Arial', 15, 'bold'), bg="#E3E4FA", fg="#737CA1",
+                                       command=self.back, highlightthickness=0, bd=3)  # Metallic Silver
         self.intro_label2.place(relx=0.2, rely=0.9, relheight=0.05, relwidth=0.6)
 
         self.predict_label = tk.Label(self.bonus_menu,
@@ -111,14 +114,14 @@ class FrameMenu:
         self.frame_menu.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.25)
 
         # frame_menu 上的物件設定
-        saury_btn = tk.Button(self.frame_menu, text='秋刀魚', command=self.saury_new_window,
-                              font=('Arial', 18, 'bold'), bg="white", fg='black')  # Slate Blue Grey
+        saury_btn = tk.Button(self.frame_menu, text='秋刀魚\n🎣', command=self.saury_new_window,
+                              font=('Arial', 20, 'bold'), bg="white", fg='black')  # Slate Blue Grey
         saury_btn.pack(side=TOP, expand=True, fill=BOTH)
-        sardine_btn = tk.Button(self.frame_menu, text='沙丁魚', command=self.sardine_new_window,
-                                font=('Arial', 18, 'bold'), bg="white", fg='black')  # Charcoal Blue
+        sardine_btn = tk.Button(self.frame_menu, text='沙丁魚\n🐠', command=self.sardine_new_window,
+                                font=('Arial', 20, 'bold'), bg="white", fg='black')  # Charcoal Blue
         sardine_btn.pack(side=TOP, expand=True, fill=BOTH)
-        squid_btn = tk.Button(self.frame_menu, text='魷魚', command=self.squid_new_window,
-                              font=('Arial', 18, 'bold'), bg="white", fg='black')  # Neon Blue
+        squid_btn = tk.Button(self.frame_menu, text='魷魚\n🎏', command=self.squid_new_window,
+                              font=('Arial', 20, 'bold'), bg="white", fg='black')  # Neon Blue
         squid_btn.pack(side=TOP, expand=True, fill=BOTH)
         btn_back = tk.Button(self.frame_menu, text='返回', command=self.back, font=('Arial', 18, 'bold'))
         btn_back.pack(side=TOP, expand=True, fill=BOTH)
