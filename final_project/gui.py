@@ -185,16 +185,21 @@ class FrameMenu:
         self.frame_menu.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.25)
 
         # frame_menu 上的物件設定
-        saury_btn = tk.Button(self.frame_menu, text='秋刀魚\n🎣', command=self.saury_new_window,
-                              font=('Arial', 20, 'bold'), bg="white", fg='black')  # Slate Blue Grey
+        saury_btn = tkm.Button(self.frame_menu, text='秋刀魚\n🎣', command=self.saury_new_window,
+                               font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
+                               highlightthickness=0)  # Slate Blue Grey
         saury_btn.pack(side=TOP, expand=True, fill=BOTH)
-        sardine_btn = tk.Button(self.frame_menu, text='沙丁魚\n🐠', command=self.sardine_new_window,
-                                font=('Arial', 20, 'bold'), bg="white", fg='black')  # Charcoal Blue
+        sardine_btn = tkm.Button(self.frame_menu, text='沙丁魚\n🐠', command=self.sardine_new_window,
+                                 font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
+                                 highlightthickness=0)  # Charcoal Blue
         sardine_btn.pack(side=TOP, expand=True, fill=BOTH)
-        squid_btn = tk.Button(self.frame_menu, text='魷魚\n🎏', command=self.squid_new_window,
-                              font=('Arial', 20, 'bold'), bg="white", fg='black')  # Neon Blue
+        squid_btn = tkm.Button(self.frame_menu, text='魷魚\n🎏', command=self.squid_new_window,
+                               font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
+                               highlightthickness=0)  # Neon Blue
         squid_btn.pack(side=TOP, expand=True, fill=BOTH)
-        btn_back = tk.Button(self.frame_menu, text='返回', command=self.back, font=('Arial', 18, 'bold'))
+        btn_back = tkm.Button(self.frame_menu, text='返回', command=self.back, font=('Arial', 18, 'bold'),
+                              bg="#DADBDD", fg='black',
+                              highlightthickness=0)
         btn_back.pack(side=TOP, expand=True, fill=BOTH)
 
     def saury_new_window(self):
@@ -255,7 +260,7 @@ class SauryMenu:
         self.frame_label1.place(relx=0.07, rely=0.75)
 
         self.frame_entry = tk.Entry(self.saury_menu)
-        self.frame_entry.place(relx=0.07, rely=0.8, relheight=0.04, relwidth=0.20)
+        self.frame_entry.place(relx=0.07, rely=0.8, relheight=0.04, relwidth=0.18)
 
         self.frame_btn = tk.Button(self.saury_menu, text='確認', command=self.button_event)
         self.frame_btn.place(relx=0.25, rely=0.8, relheight=0.04, relwidth=0.06)
@@ -274,7 +279,7 @@ class SauryMenu:
 
         self.intro_label = tk.Label(self.saury_menu,
                                     text="秋刀魚主要漁場，位於：35~50°N、145~170°E\n使用8月海水表面平均溫度預測漁獲量"
-                                         "\n\n\n有效溫度：11.94°C~33.19°C",
+                                         "\n\n\n11.94°C ≤ 有效溫度 ≤ 33.19°C",
                                     bg="#737CA1", font=('Arial', 15, 'bold'), fg="#EBF4FA")  # Water
         self.intro_label.place(relx=0.2, rely=0.45, relheight=0.2, relwidth=0.6)
 
@@ -322,7 +327,7 @@ class SardineMenu:
         self.frame_label1.place(relx=0.07, rely=0.75)
 
         self.frame_entry = tk.Entry(self.sardine_menu)
-        self.frame_entry.place(relx=0.07, rely=0.8, relheight=0.04, relwidth=0.20)
+        self.frame_entry.place(relx=0.07, rely=0.8, relheight=0.04, relwidth=0.18)
 
         self.frame_btn = tk.Button(self.sardine_menu, text='確認', command=self.button_event)
         self.frame_btn.place(relx=0.25, rely=0.8, relheight=0.04, relwidth=0.06)
@@ -388,7 +393,7 @@ class SquidMenu:
         self.frame_label1.place(relx=0.07, rely=0.75)
 
         self.frame_entry = tk.Entry(self.squid_menu)
-        self.frame_entry.place(relx=0.07, rely=0.8, relheight=0.04, relwidth=0.20)
+        self.frame_entry.place(relx=0.07, rely=0.8, relheight=0.04, relwidth=0.18)
 
         self.frame_btn = tk.Button(self.squid_menu, text='確認', command=self.button_event)
         self.frame_btn.place(relx=0.25, rely=0.8, relheight=0.04, relwidth=0.06)
@@ -407,7 +412,7 @@ class SquidMenu:
 
         self.intro_label = tk.Label(self.squid_menu,
                                     text="魷魚主要漁場，位於：20~50°N、160°E~140°W\n使用1~3月海水表面平均溫度預測漁獲量"
-                                         "\n\n\n有效溫度：~12.22°C",
+                                         "\n\n\n有效溫度 ≤ 12.22°C",
                                     bg="#2C3539", font=('Arial', 15, 'bold'), fg="#CFECEC")  # Pale Blue Lily
         self.intro_label.place(relx=0.175, rely=0.45, relheight=0.2, relwidth=0.65)
 
