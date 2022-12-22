@@ -70,6 +70,27 @@ class BonusMenu:
         self.root = master
         self.root.config(bg="#737CA1")  # Slate Blue Grey
 
+        # bonus_menu 動態變數設定
+        self.saury_text = "167382.1"
+        self.sardine_text = "195547.1"
+        self.squid_text = "26383.4"
+
+        self.saury_animation_text = "秋刀魚："
+        self.sardine_animation_text = "沙丁魚："
+        self.squid_animation_text = " 魷魚："
+
+        self.saury_index = 0
+        self.sardine_index = 0
+        self.squid_index = 0
+
+        self.saury_text_var = tk.StringVar()
+        self.sardine_text_var = tk.StringVar()
+        self.squid_text_var = tk.StringVar()
+
+        self.saury_text_var.set(self.saury_animation_text)
+        self.sardine_text_var.set(self.sardine_animation_text)
+        self.squid_text_var.set(self.squid_animation_text)
+
         # bonus_menu 背景設定
         self.bonus_menu = tk.Frame(self.root)  # 在 root 上建 BonusMenu
         self.bonus_menu.config(bg="#E3E4FA")  # Lavender Blue
@@ -82,22 +103,22 @@ class BonusMenu:
         self.intro_label2.place(relx=0.2, rely=0.9, relheight=0.05, relwidth=0.6)
 
         self.predict_label1 = tk.Label(self.bonus_menu,
-                                      text="   預測2023年捕獲量：",
-                                      bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
+                                       text="   預測2023年捕獲量：",
+                                       bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
         self.predict_label1.place(relx=0.2, rely=0.35, relheight=0.05, relwidth=0.6)
 
         self.predict_label2 = tk.Label(self.bonus_menu,
-                                       text="秋刀魚：167382.4",
+                                       textvariable=self.saury_text_var,
                                        bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
         self.predict_label2.place(relx=0.2, rely=0.45, relheight=0.05, relwidth=0.6)
 
         self.predict_label3 = tk.Label(self.bonus_menu,
-                                       text="沙丁魚：195547.1",
+                                       textvariable=self.sardine_text_var,
                                        bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
         self.predict_label3.place(relx=0.2, rely=0.5, relheight=0.05, relwidth=0.6)
 
         self.predict_label4 = tk.Label(self.bonus_menu,
-                                       text=" 魷魚：26383.4",
+                                       textvariable=self.squid_text_var,
                                        bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
         self.predict_label4.place(relx=0.2, rely=0.55, relheight=0.05, relwidth=0.6)
 
@@ -105,6 +126,36 @@ class BonusMenu:
                                        text="\n\n(單位：噸)",
                                        bg="#E3E4FA", font=('Arial', 25, 'bold'), fg="#737CA1")  # Slate Blue Grey
         self.predict_label5.place(relx=0.2, rely=0.6, relheight=0.15, relwidth=0.6)
+
+        self.run_animate()
+
+    def animation_saury(self):
+        self.saury_animation_text += self.saury_text[self.saury_index]
+        self.saury_text_var.set(self.saury_animation_text)
+        self.saury_index += 1
+        if self.saury_index < len(self.saury_text):
+            self.bonus_menu.after(100, self.animation_saury)
+        else:
+            self.animation_sardine()
+
+    def animation_sardine(self):
+        self.sardine_animation_text += self.sardine_text[self.sardine_index]
+        self.sardine_text_var.set(self.sardine_animation_text)
+        self.sardine_index += 1
+        if self.sardine_index < len(self.sardine_text):
+            self.bonus_menu.after(100, self.animation_sardine)
+        else:
+            self.animation_squid()
+
+    def animation_squid(self):
+        self.squid_animation_text += self.squid_text[self.squid_index]
+        self.squid_text_var.set(self.squid_animation_text)
+        self.squid_index += 1
+        if self.squid_index < len(self.squid_text):
+            self.bonus_menu.after(100, self.animation_squid)
+
+    def run_animate(self):
+        self.animation_saury()
 
     def back(self):
         self.bonus_menu.destroy()  # 刪除 BonusMenu
