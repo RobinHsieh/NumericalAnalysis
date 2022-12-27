@@ -185,22 +185,25 @@ class FrameMenu:
         self.frame_menu.place(relx=0.025, rely=0.025, relheight=0.95, relwidth=0.25)
 
         # frame_menu 上的物件設定
-        saury_btn = tkm.Button(self.frame_menu, text='秋刀魚\n🎣', command=self.saury_new_window,
-                               font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
-                               highlightthickness=0)  # Slate Blue Grey
-        saury_btn.pack(side=TOP, expand=True, fill=BOTH)
-        sardine_btn = tkm.Button(self.frame_menu, text='沙丁魚\n🐠', command=self.sardine_new_window,
-                                 font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
-                                 highlightthickness=0)  # Charcoal Blue
-        sardine_btn.pack(side=TOP, expand=True, fill=BOTH)
-        squid_btn = tkm.Button(self.frame_menu, text='魷魚\n🎏', command=self.squid_new_window,
-                               font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
-                               highlightthickness=0)  # Neon Blue
-        squid_btn.pack(side=TOP, expand=True, fill=BOTH)
-        btn_back = tkm.Button(self.frame_menu, text='返回', command=self.back, font=('Arial', 18, 'bold'),
-                              bg="#DADBDD", fg='black',
-                              highlightthickness=0)
-        btn_back.pack(side=TOP, expand=True, fill=BOTH)
+        self.saury_btn = tkm.Button(self.frame_menu, text='秋刀魚\n🎣', command=self.saury_new_window,
+                                    font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
+                                    highlightthickness=0)  # Slate Blue Grey
+        self.saury_btn.pack(side=TOP, expand=True, fill=BOTH)
+
+        self.sardine_btn = tkm.Button(self.frame_menu, text='沙丁魚\n🐠', command=self.sardine_new_window,
+                                      font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
+                                      highlightthickness=0)  # Charcoal Blue
+        self.sardine_btn.pack(side=TOP, expand=True, fill=BOTH)
+
+        self.squid_btn = tkm.Button(self.frame_menu, text='魷魚\n🎏', command=self.squid_new_window,
+                                    font=('Arial', 20, 'bold'), bg="#DADBDD", fg='black',
+                                    highlightthickness=0)  # Neon Blue
+        self.squid_btn.pack(side=TOP, expand=True, fill=BOTH)
+
+        self.btn_back = tkm.Button(self.frame_menu, text='返回', command=self.back, font=('Arial', 18, 'bold'),
+                                   bg="#DADBDD", fg='black',
+                                   highlightthickness=0)
+        self.btn_back.pack(side=TOP, expand=True, fill=BOTH)
 
     def saury_new_window(self):
         self.saury_menu = SauryMenu(self.root)
@@ -279,9 +282,15 @@ class SauryMenu:
 
         self.intro_label = tk.Label(self.saury_menu,
                                     text="秋刀魚主要漁場，位於：35~50°N、145~170°E\n使用8月海水表面平均溫度預測漁獲量"
+                                         "\n預測捕撈季節：9月~11月"
                                          "\n\n\n11.94°C ≤ 有效溫度 ≤ 33.19°C",
                                     bg="#737CA1", font=('Arial', 15, 'bold'), fg="#EBF4FA")  # Water
         self.intro_label.place(relx=0.2, rely=0.45, relheight=0.2, relwidth=0.6)
+
+        self.explain_label = tk.Label(self.saury_menu,
+                                      text="紅色代表低於歷年捕獲量平均，綠色代表高於歷年捕獲量平均。捕獲量平均約：120000噸",
+                                      bg="#737CA1", font=('Arial', 12, 'bold'), fg="#CFECEC")  # Pale Blue Lily
+        self.explain_label.place(relx=0.05, rely=0.9, relheight=0.05, relwidth=0.9)
 
         self.img_saury = Image.open('saury.jpg')
         self.img_saury = self.img_saury.resize((174, 116))
@@ -298,11 +307,13 @@ class SauryMenu:
         self.frame_ans.delete(1.0, END)
         self.frame_ans.insert('insert', str(round(y, 3)))
 
-        if y > 130000:
+        if y > 120000:
+            self.frame_ans.config(fg="#4CC417")  # Green Apple
             pygame.mixer.music.load("MLG_Horns.mp3")
             pygame.mixer.music.play(loops=0)
             FrameMenu(self.root)
         else:
+            self.frame_ans.config(fg="#F87217")  # Pumpkin Orange
             pygame.mixer.music.load("Windows_XP_Shutdown.mp3")
             pygame.mixer.music.play(loops=0)
             FrameMenu(self.root)
@@ -345,9 +356,15 @@ class SardineMenu:
         self.label_pic.place(relx=0.2, rely=0.05, relheight=0.4, relwidth=0.6)
 
         self.intro_label = tk.Label(self.sardine_menu,
-                                    text="沙丁魚主要漁場，位於：26.5~42.5°N、126.5~144.5°E\n使用1~3月海水表面平均溫度預測漁獲量",
+                                    text="沙丁魚主要漁場，位於：26.5~42.5°N、126.5~144.5°E\n使用1~3月海水表面平均溫度預測漁獲量"
+                                         "\n預測捕撈季節：6月~9月",
                                     bg="#36454F", font=('Arial', 15, 'bold'), fg="#CFECEC")  # Pale Blue Lily
         self.intro_label.place(relx=0.175, rely=0.45, relheight=0.1, relwidth=0.65)
+
+        self.explain_label = tk.Label(self.sardine_menu,
+                                      text="紅色代表低於歷年捕獲量平均，綠色代表高於歷年捕獲量平均。捕獲量平均約：200000噸",
+                                      bg="#36454F", font=('Arial', 12, 'bold'), fg="#CFECEC")  # Pale Blue Lily
+        self.explain_label.place(relx=0.05, rely=0.9, relheight=0.05, relwidth=0.9)
 
         self.img_saury = Image.open('sardine.jpg')
         self.img_saury = self.img_saury.resize((174, 116))
@@ -365,10 +382,12 @@ class SardineMenu:
         self.frame_ans.insert('insert', str(round(y, 3)))
 
         if y > 200000:
+            self.frame_ans.config(fg="#4CC417")  # Green Apple
             pygame.mixer.music.load("MLG_Horns.mp3")
             pygame.mixer.music.play(loops=0)
             FrameMenu(self.root)
         else:
+            self.frame_ans.config(fg="#F87217")  # Pumpkin Orange
             pygame.mixer.music.load("Windows_XP_Shutdown.mp3")
             pygame.mixer.music.play(loops=0)
             FrameMenu(self.root)
@@ -412,9 +431,15 @@ class SquidMenu:
 
         self.intro_label = tk.Label(self.squid_menu,
                                     text="魷魚主要漁場，位於：20~50°N、160°E~140°W\n使用1~3月海水表面平均溫度預測漁獲量"
+                                         "\n預測捕撈季節：1月~3月"
                                          "\n\n\n有效溫度 ≤ 12.22°C",
                                     bg="#2C3539", font=('Arial', 15, 'bold'), fg="#CFECEC")  # Pale Blue Lily
         self.intro_label.place(relx=0.175, rely=0.45, relheight=0.2, relwidth=0.65)
+
+        self.explain_label = tk.Label(self.squid_menu,
+                                      text="紅色代表低於歷年捕獲量平均，綠色代表高於歷年捕獲量平均。捕獲量平均約：100000噸",
+                                      bg="#2C3539", font=('Arial', 12, 'bold'), fg="#CFECEC")  # Pale Blue Lily
+        self.explain_label.place(relx=0.05, rely=0.9, relheight=0.05, relwidth=0.9)
 
         self.img_saury = Image.open('squid.jpg')
         self.img_saury = self.img_saury.resize((174, 116))
@@ -432,10 +457,12 @@ class SquidMenu:
         self.frame_ans.insert('insert', str(round(y, 3)))
 
         if y > 100000:
+            self.frame_ans.config(fg="#4CC417")  # Green Apple
             pygame.mixer.music.load("MLG_Horns.mp3")
             pygame.mixer.music.play(loops=0)
             FrameMenu(self.root)
         else:
+            self.frame_ans.config(fg="#F87217")  # Pumpkin Orange
             pygame.mixer.music.load("Windows_XP_Shutdown.mp3")
             pygame.mixer.music.play(loops=0)
             FrameMenu(self.root)
